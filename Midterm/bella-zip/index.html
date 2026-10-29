@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BELLA.ZIP — Bella's retro desktop portfolio."
+    />
+    <title>BELLA.ZIP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="home-page">
+    <div class="monitor-stage">
+      <section class="crt-monitor" aria-label="BELLA CRT monitor">
+        <div class="crt-bezel">
+          <div class="crt-screen">
+            <!-- A short CSS-only boot screen. No JavaScript is needed. -->
+            <div class="simple-boot" aria-hidden="true">
+              <div class="simple-boot-content">
+                <p>BELLA PERSONAL COMPUTER</p>
+                <h1>BELLA.ZIP</h1>
+                <p>loading personal files...</p>
+                <div class="boot-bar"><span></span></div>
+              </div>
+            </div>
+
+            <main id="desktop" aria-label="BELLA.ZIP retro desktop">
+              <!-- Normal links and CSS-only popup links keep the navigation simple. -->
+              <nav class="desktop-icons" aria-label="Desktop shortcuts">
+                <a class="desktop-icon" href="projects.html">
+                  <span class="icon-picture icon-computer" aria-hidden="true">▣</span>
+                  <span>PROJECTS</span>
+                </a>
+
+                <a class="desktop-icon" href="#about-window">
+                  <span class="icon-picture icon-folder" aria-hidden="true">★</span>
+                  <span>ABOUT_ME</span>
+                </a>
+
+                <a class="desktop-icon" href="projects.html#short-films">
+                  <span class="icon-picture icon-film" aria-hidden="true">▶</span>
+                  <span>FILMS</span>
+                </a>
+
+                <a class="desktop-icon" href="#contact-window">
+                  <span class="icon-picture icon-mail" aria-hidden="true">@</span>
+                  <span>CONTACT</span>
+                </a>
+
+                <a class="desktop-icon" href="#secret-window">
+                  <span class="icon-picture icon-document" aria-hidden="true">?</span>
+                  <span>SECRET.TXT</span>
+                </a>
+
+                <span class="desktop-icon">
+                  <span class="icon-picture icon-trash" aria-hidden="true">▥</span>
+                  <span>TRASH</span>
+                </span>
+              </nav>
+
+              <p class="japanese-note" aria-hidden="true">
+                インターネットで<br />また、どこかで<br />きっと会える…
+              </p>
+              <p class="dream-note" aria-hidden="true">same strange dreams online...</p>
+
+              <!-- Main welcome window -->
+              <section class="window welcome-window" aria-labelledby="welcome-title">
+                <header class="title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="welcome-title">welcome to BELLA.ZIP</h2>
+                  <div class="window-controls" aria-hidden="true">
+                    <span>—</span><span>□</span><span class="red-control">×</span>
+                  </div>
+                </header>
+
+                <div class="menu-bar" aria-hidden="true">
+                  <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+                </div>
+
+                <!-- Week 04: this two-column layout is made with Flexbox. -->
+                <div class="welcome-content">
+                  <div class="welcome-profile-column">
+                    <figure class="photo-viewer">
+                      <figcaption class="photo-viewer-titlebar">
+                        <span aria-hidden="true">▧</span>
+                        <span>bella.jpg</span>
+                        <span class="photo-viewer-close" aria-hidden="true">×</span>
+                      </figcaption>
+
+                      <div class="profile-photo-frame">
+                        <img
+                          src="assets/bella-profile.png"
+                          alt="Portrait of Bella against a soft blue background"
+                        />
+                      </div>
+
+                      <div class="photo-viewer-status" aria-hidden="true">
+                        <span>PORTRAIT</span><span>1122 × 1402</span>
+                      </div>
+                    </figure>
+
+                    <ul class="folder-list" aria-label="Portfolio sections">
+                      <li><a href="projects.html"><span class="mini-folder" aria-hidden="true"></span>PROJECTS →</a></li>
+                      <li><a href="#about-window"><span class="mini-folder" aria-hidden="true"></span>ABOUT ME →</a></li>
+                      <li><a href="projects.html#short-films"><span class="mini-folder" aria-hidden="true"></span>FILMS →</a></li>
+                      <li><a href="#contact-window"><span class="mini-folder" aria-hidden="true"></span>CONTACT →</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="welcome-copy">
+                    <div class="logo-lockup">
+                      <h1>BELLA.ZIP</h1>
+                      <p>personal space on the internet ...</p>
+                    </div>
+
+                    <div class="intro-copy">
+                      <p>
+                        Hi! I'm Bella.<br />
+                        This is my corner of the internet where
+                        I share my projects, films, thoughts and
+                        random things I love.
+                      </p>
+
+                      <p>
+                        Feel free to click around and explore.
+                        Maybe you'll find something unexpected. ♡
+                      </p>
+                    </div>
+
+                    <p class="tiny-manifesto">
+                      🪐 good ideas, strange days, and changing hair colors
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Project previews use normal links to a second HTML page. -->
+              <section class="window projects-window" aria-labelledby="projects-title">
+                <header class="title-bar small-title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="projects-title">my_projects.exe</h2>
+                  <div class="window-controls" aria-hidden="true">
+                    <span>—</span><span>□</span><span class="red-control">×</span>
+                  </div>
+                </header>
+
+                <div class="project-list">
+                  <a class="project-card" href="projects.html#hair-archive">
+                    <div class="project-image hair-archive-art" aria-hidden="true">
+                      <span class="moon"></span><span class="horizon"></span>
+                    </div>
+                    <p>01. hair archive ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#short-films">
+                    <div class="project-image short-films" aria-hidden="true">
+                      <span class="screen-cat">● ᴥ ●</span>
+                    </div>
+                    <p>02. short films ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#web-experiments">
+                    <div class="project-image web-experiment-art" aria-hidden="true">
+                      <span class="cloud cloud-a"></span>
+                      <span class="cloud cloud-b"></span>
+                    </div>
+                    <p>03. web experiments ↗</p>
+                  </a>
+                </div>
+              </section>
+
+              <!-- This small music player is decorative. -->
+              <section class="window music-window" aria-labelledby="music-title">
+                <header class="title-bar small-title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="music-title">now_playing...</h2>
+                  <div class="window-controls" aria-hidden="true"><span class="red-control">×</span></div>
+                </header>
+                <div class="music-content">
+                  <div class="disc" aria-hidden="true"><span></span></div>
+                  <div>
+                    <p>Internet Girl<br />– Virtual Self</p>
+                    <div class="track-progress" aria-hidden="true"><span></span></div>
+                    <p class="player-buttons" aria-hidden="true">◀　Ⅱ　▶</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Week 07: these popups open with the CSS :target selector. -->
+              <section class="modal" id="about-window" aria-labelledby="about-title">
+                <div class="window modal-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">★</span>
+                    <h2 id="about-title">about_bella.txt</h2>
+                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close About Me">×</a></div>
+                  </header>
+                  <div class="about-content">
+                    <div class="about-avatar" aria-hidden="true">B</div>
+                    <div>
+                      <h3>Hi, I'm Bella!</h3>
+                      <p>I make playful websites, short films and strange little internet worlds.</p>
+                      <p class="about-status">STATUS: currently changing my hair again...</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="contact-window" aria-labelledby="contact-title">
+                <div class="window modal-window contact-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">@</span>
+                    <h2 id="contact-title">contact_bella.html</h2>
+                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close contact form">×</a></div>
+                  </header>
+
+                  <div class="contact-content">
+                    <p>Send me a message ♡</p>
+
+                    <!-- This is a front-end demo form. Formspree can be connected later. -->
+                    <form action="#" method="get">
+                      <label for="contact-name">Name</label>
+                      <input id="contact-name" name="name" type="text" required />
+
+                      <label for="contact-email">Email</label>
+                      <input id="contact-email" name="email" type="email" required />
+
+                      <label for="contact-message">Message</label>
+                      <textarea id="contact-message" name="message" rows="4" required></textarea>
+
+                      <button type="submit">SEND MESSAGE</button>
+                    </form>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="secret-window" aria-labelledby="secret-title">
+                <div class="window modal-window secret-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">?</span>
+                    <h2 id="secret-title">secret.txt</h2>
+                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close secret">×</a></div>
+                  </header>
+                  <div class="secret-content">
+                    <span aria-hidden="true">★</span>
+                    <p>you found a secret :)<br /><small>hair color archive coming next...</small></p>
+                  </div>
+                </div>
+              </section>
+
+              <p class="desktop-caption" aria-hidden="true">good internet friends<br />better days... ♡</p>
+
+              <footer class="taskbar" aria-label="Desktop taskbar">
+                <a class="start-button" href="#desktop"><span aria-hidden="true">✦</span> Start</a>
+                <div class="task-tabs">
+                  <span>★ welcome to BELLA.ZIP</span>
+                  <a href="projects.html">▣ my_projects.exe</a>
+                  <a href="#contact-window">@ contact</a>
+                </div>
+                <div class="system-tray" aria-hidden="true">10:24 PM　🪐</div>
+              </footer>
+            </main>
+          </div>
+        </div>
+
+        <div class="monitor-chin">
+          <p class="monitor-note">good internet friends<br />better days... ♡</p>
+          <div class="monitor-brand">BELLA<small>PERSONAL COMPUTER</small></div>
+          <div class="monitor-controls" aria-hidden="true">
+            <span class="monitor-button">◀</span>
+            <span class="monitor-button">●</span>
+            <span class="monitor-button">▶</span>
+            <span class="power-led"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
