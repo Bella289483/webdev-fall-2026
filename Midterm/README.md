@@ -4,8 +4,7 @@ BELLA.ZIP is my personal portfolio website designed like a retro desktop compute
 
 ## Live Site
 
-https://bella289483.github.io/bella-zip/
-
+https://bella289483.github.io/bella-zip/bella-zip/
 ## Project Files
 
 - index.html
