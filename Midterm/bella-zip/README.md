@@ -1,10 +1,10 @@
+# BELLA.ZIP
+
 ## Live Website
 
-[Open BELLA.ZIP](https://bella289483.github.io/webdev-fall-2026/Midterm/bella-zip/)# BELLA.ZIP
+[Open BELLA.ZIP](https://bella289483.github.io/webdev-fall-2026/Midterm/bella-zip/)
 
 BELLA.ZIP is my Web Development midterm. It is a personal portfolio that looks like an old desktop computer.
-
-**Live site:** I will add the GitHub Pages link here after I publish the repository.
 
 ## My idea
 
