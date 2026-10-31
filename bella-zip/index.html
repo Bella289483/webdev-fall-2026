@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BELLA.ZIP — Bella's retro desktop portfolio."
+    />
+    <title>BELLA.ZIP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="home-page">
+    <div class="monitor-stage">
+      <section class="crt-monitor" aria-label="BELLA CRT monitor">
+        <div class="crt-bezel">
+          <div class="crt-screen">
+            <!-- This loading screen is made with the Week 07 keyframe lesson. -->
+            <div class="simple-boot" aria-hidden="true">
+              <div class="simple-boot-content">
+                <p>BELLA PERSONAL COMPUTER</p>
+                <h1>BELLA.ZIP</h1>
+                <p>loading personal files...</p>
+                <div class="boot-bar"><span></span></div>
+              </div>
+            </div>
+
+            <main id="desktop" aria-label="BELLA.ZIP retro desktop">
+              <!-- Normal links and CSS-only popup links keep the navigation simple. -->
+              <nav class="desktop-icons" aria-label="Desktop shortcuts">
+                <a class="desktop-icon" href="projects.html">
+                  <span class="icon-picture icon-computer" aria-hidden="true">▣</span>
+                  <span>PROJECTS</span>
+                </a>
+
+                <a class="desktop-icon" href="#about-window">
+                  <span class="icon-picture icon-folder" aria-hidden="true">★</span>
+                  <span>ABOUT_ME</span>
+                </a>
+
+                <a
+                  class="desktop-icon"
+                  href="https://www.youtube.com/@BellaLi-e7t"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="icon-picture icon-film" aria-hidden="true">▶</span>
+                  <span>FILMS</span>
+                </a>
+
+                <a class="desktop-icon" href="#contact-window">
+                  <span class="icon-picture icon-mail" aria-hidden="true">@</span>
+                  <span>CONTACT</span>
+                </a>
+
+                <a class="desktop-icon" href="#secret-window">
+                  <span class="icon-picture icon-document" aria-hidden="true">?</span>
+                  <span>SECRET.TXT</span>
+                </a>
+
+                <a class="desktop-icon" href="#trash-window">
+                  <span class="icon-picture icon-trash" aria-hidden="true">▥</span>
+                  <span>TRASH</span>
+                </a>
+              </nav>
+
+              <p class="japanese-note" aria-hidden="true">
+                インターネットで<br />また、どこかで<br />きっと会える…
+              </p>
+              <p class="dream-note" aria-hidden="true">same strange dreams online...</p>
+
+              <!-- Main welcome window -->
+              <section class="window welcome-window" aria-labelledby="welcome-title">
+                <header class="title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="welcome-title">welcome to BELLA.ZIP</h2>
+                  <div class="window-controls" aria-hidden="true">
+                    <span>—</span><span>□</span><span class="red-control">×</span>
+                  </div>
+                </header>
+
+                <div class="menu-bar" aria-hidden="true">
+                  <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span>
+                </div>
+
+                <!-- Week 04: this two-column layout is made with Flexbox. -->
+                <div class="welcome-content">
+                  <div class="welcome-profile-column">
+                    <figure class="photo-viewer">
+                      <figcaption class="photo-viewer-titlebar">
+                        <span aria-hidden="true">▧</span>
+                        <span>bella.jpg</span>
+                        <span class="photo-viewer-close" aria-hidden="true">×</span>
+                      </figcaption>
+
+                      <div class="profile-photo-frame">
+                        <img
+                          src="assets/bella-profile.jpg"
+                          alt="Portrait of Bella against a soft blue background"
+                          width="600"
+                          height="750"
+                        />
+                      </div>
+
+                      <div class="photo-viewer-status" aria-hidden="true">
+                        <span>PORTRAIT</span><span>600 × 750</span>
+                      </div>
+                    </figure>
+
+                    <ul class="folder-list" aria-label="Portfolio sections">
+                      <li><a href="projects.html"><span class="mini-folder" aria-hidden="true"></span>PROJECTS →</a></li>
+                      <li><a href="#about-window"><span class="mini-folder" aria-hidden="true"></span>ABOUT ME →</a></li>
+                      <li><a href="projects.html#idore-cast-pass"><span class="mini-folder" aria-hidden="true"></span>IDORE DESIGN →</a></li>
+                      <li><a href="#contact-window"><span class="mini-folder" aria-hidden="true"></span>CONTACT →</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="welcome-copy">
+                    <div class="logo-lockup">
+                      <h1>BELLA.ZIP</h1>
+                      <p>personal space on the internet ...</p>
+                    </div>
+
+                    <div class="intro-copy">
+                      <p>
+                        Hi! I'm Bella.<br />
+                        This is my corner of the internet where
+                        I share my projects, films, thoughts and
+                        random things I love.
+                      </p>
+
+                      <p>
+                        Feel free to click around and explore.
+                        Maybe you'll find something unexpected. ♡
+                      </p>
+                    </div>
+
+                    <p class="tiny-manifesto" id="random-note">
+                      🪐 good ideas, strange days, and changing hair colors
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Project previews use normal links to a second HTML page. -->
+              <section class="window projects-window" aria-labelledby="projects-title">
+                <header class="title-bar small-title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="projects-title">my_projects.exe</h2>
+                  <div class="window-controls" aria-hidden="true">
+                    <span>—</span><span>□</span><span class="red-control">×</span>
+                  </div>
+                </header>
+
+                <div class="project-list">
+                  <a class="project-card" href="projects.html#jadeite-app">
+                    <div class="project-image jadeite-project-art">
+                      <img src="assets/jadeite-project.jpg" alt="Jadeite app interface and user testing process" width="1200" height="735" loading="lazy" />
+                    </div>
+                    <p>01. jadeite app ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#one-sided">
+                    <div class="project-image one-sided-project-art">
+                      <img src="assets/one-sided-project.jpg" alt="Red and black TouchDesigner projection" width="1200" height="735" loading="lazy" />
+                    </div>
+                    <p>02. one sided ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#find-me-adopt-me">
+                    <div class="project-image find-me-project-art">
+                      <img src="assets/find-me-adopt-me.jpg" alt="Find Me Adopt Me stray dog campaign" width="1200" height="733" loading="lazy" />
+                    </div>
+                    <p>03. find me, adopt me ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#idore-cast-pass">
+                    <div class="project-image idore-project-art">
+                      <img src="assets/idore-cast-pass.jpg" alt="IDORE Resident Cast Pass artist card design" width="1200" height="757" loading="lazy" />
+                    </div>
+                    <p>04. IDORE cast pass ↗</p>
+                  </a>
+                </div>
+              </section>
+
+              <!-- This small music player is decorative. -->
+              <section class="window music-window" aria-labelledby="music-title">
+                <header class="title-bar small-title-bar">
+                  <span class="window-mark" aria-hidden="true">★</span>
+                  <h2 id="music-title">now_playing...</h2>
+                  <div class="window-controls" aria-hidden="true"><span class="red-control">×</span></div>
+                </header>
+                <div class="music-content">
+                  <div class="disc" aria-hidden="true"><span></span></div>
+                  <div>
+                    <p>Internet Girl<br />– Virtual Self</p>
+                    <div class="track-progress" aria-hidden="true"><span></span></div>
+                    <p class="player-buttons" aria-hidden="true">◀　Ⅱ　▶</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Week 07: these popups open with the CSS :target selector. -->
+              <section class="modal" id="about-window" aria-labelledby="about-title">
+                <div class="window modal-window about-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">★</span>
+                    <h2 id="about-title">about_bella.txt</h2>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close About Me">×</a></div>
+                  </header>
+                  <div class="about-content">
+                    <div class="about-heading">
+                      <div class="about-avatar">
+                        <img src="assets/bella-about.jpg" alt="Portrait of Bella in pink and blue light" width="480" height="320" loading="lazy" />
+                      </div>
+                      <div>
+                        <p class="about-label">HELLO / 你好</p>
+                        <h3>Hi, I'm Bella Li!</h3>
+                        <p>
+                          I'm an Interactive Media Arts student at NYU Tisch, minoring in Business of
+                          Entertainment, Media, and Technology. My work brings together AI filmmaking,
+                          interactive design, and visual storytelling.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我是 Bella，就读于纽约大学 Tisch 交互媒体艺术专业，辅修娱乐、媒体与科技商业。我的创作结合 AI 影像、交互设计与视觉叙事。
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="about-sections">
+                      <section class="about-block">
+                        <p class="about-label">01 / WHAT I CREATE</p>
+                        <p>
+                          I create interactive websites, AI-generated videos, and photographic stories.
+                          I'm drawn to characters, atmosphere, and the small details that make an
+                          experience feel personal.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我创作交互网页、AI 视频与摄影作品，关注角色、氛围，以及那些让观众产生情感连接的小细节。我喜欢把一个想法逐步变成可以观看、探索和参与的作品。
+                        </p>
+                      </section>
+
+                      <section class="about-block about-block-wide">
+                        <p class="about-label">02 / INTERNSHIP EXPERIENCE</p>
+                        <p>
+                          During the summer after my first year, I worked as an AIGC intern,
+                          contributing to video scripts, storyboards, AI image and video generation,
+                          and editing. Videos I contributed to have received over 10 million combined views.
+                        </p>
+                        <p>
+                          In my second year, I joined IDORE as an Overseas Product Operations Intern,
+                          working on North American audience and competitor research, social media
+                          content planning, and character-focused AIGC videos.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          大一暑假，我担任 AIGC 实习生，参与视频的脚本与分镜策划、AI 图像与视频生成，以及后期剪辑，积累了从创意到成片的制作经验，参与制作的多条作品累计播放量超过千万。
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          大二期间，我作为海外产品运营实习生参与 IDORE，开展北美用户与竞品研究、社交媒体内容策划及角色 AIGC 视频创作，探索游戏与角色面向海外用户的传播方式。
+                        </p>
+                      </section>
+
+                      <section class="about-block">
+                        <p class="about-label">03 / CAMPUS EXPERIENCE</p>
+                        <p>
+                          As part of the NYUCSSA PR team, I contribute to event promotion and poster
+                          design. I turn event themes and key information into visual materials that
+                          connect with the campus community.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我在纽约大学中国学生学者联谊会 NYUCSSA 的 PR 部门参与活动宣传策划与海报设计，将活动主题和信息转化为面向校园学生的视觉内容，兼顾视觉吸引力与信息清晰度。
+                        </p>
+                      </section>
+
+                      <section class="about-block about-block-wide">
+                        <p class="about-label">04 / MY TOOLKIT</p>
+                        <div class="toolkit-list">
+                          <p><strong>Design &amp; Video / 设计与影像</strong><br />Figma · Photoshop · Premiere Pro</p>
+                          <p><strong>Creative Coding / 创意编程</strong><br />HTML · CSS · JavaScript · p5.js</p>
+                          <p><strong>AI Creation / AI 创作</strong><br />Kling AI · Runway · Midjourney · Stable Diffusion</p>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="contact-window" aria-labelledby="contact-title">
+                <div class="window modal-window contact-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">@</span>
+                    <h2 id="contact-title">contact_bella.html</h2>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close contact form">×</a></div>
+                  </header>
+
+                  <div class="contact-content">
+                    <p>Send me a message ♡</p>
+
+                    <form action="https://formspree.io/f/mpppjkoz" method="POST">
+                      <label for="contact-name">Name</label>
+                      <input id="contact-name" name="name" type="text" autocomplete="name" required />
+
+                      <label for="contact-email">Email</label>
+                      <input id="contact-email" name="email" type="email" autocomplete="email" required />
+
+                      <label for="contact-message">Message</label>
+                      <textarea id="contact-message" name="message" rows="4" required></textarea>
+
+                      <button type="submit">SEND MESSAGE</button>
+                      <input type="hidden" name="subject" value="New message from BELLA.ZIP" />
+                    </form>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="secret-window" aria-labelledby="secret-title">
+                <div class="window modal-window secret-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">?</span>
+                    <h2 id="secret-title">secret.txt</h2>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close secret">×</a></div>
+                  </header>
+                  <div class="secret-content">
+                    <span aria-hidden="true">★</span>
+                    <p>you found a secret :)<br /><small>hair color archive coming next...</small></p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="trash-window" aria-labelledby="trash-title">
+                <div class="window modal-window trash-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">▥</span>
+                    <h2 id="trash-title">trash</h2>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close trash">×</a></div>
+                  </header>
+                  <div class="trash-content">
+                    <span aria-hidden="true">✧</span>
+                    <p>Trash is empty.<br /><small>nothing lost, nothing forgotten.</small></p>
+                  </div>
+                </div>
+              </section>
+
+              <p class="desktop-caption" aria-hidden="true">good internet friends<br />better days... ♡</p>
+
+              <footer class="taskbar" aria-label="Desktop taskbar">
+                <a class="start-button" href="#desktop"><span aria-hidden="true">✦</span> Start</a>
+                <div class="task-tabs">
+                  <span>★ welcome to BELLA.ZIP</span>
+                  <a href="projects.html">▣ my_projects.exe</a>
+                  <a href="#contact-window">@ contact</a>
+                </div>
+                <div class="system-tray" aria-hidden="true">10:24 PM　🪐</div>
+              </footer>
+            </main>
+          </div>
+        </div>
+
+        <div class="monitor-chin">
+          <p class="monitor-note">good internet friends<br />better days... ♡</p>
+          <div class="monitor-brand">BELLA<small>PERSONAL COMPUTER</small></div>
+          <div class="monitor-controls" aria-hidden="true">
+            <span class="monitor-button">◀</span>
+            <span class="monitor-button">●</span>
+            <span class="monitor-button">▶</span>
+            <span class="power-led"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Week 09: the script goes last so the page is already loaded. -->
+    <script src="script.js"></script>
+  </body>
+</html>

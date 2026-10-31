@@ -1,0 +1,1910 @@
+/* BELLA.ZIP
+   This stylesheet uses the class topics from Weeks 01–09:
+   variables, the box model, Flexbox, position, hover, transition,
+   transform, :target modals and media queries. */
+
+:root {
+  --blue: #2457c5;
+  --dark-blue: #14378f;
+  --light-blue: #cad8ec;
+  --paper: #f5f2e9;
+  --silver: #d8d8d3;
+  --line: #858da4;
+  --ink: #173c9e;
+  --pink: #df8eae;
+  --shadow: rgba(0, 0, 0, 0.38);
+  --body-bg: #151821;
+  --desktop-bg: #07102a;
+  --window-blue-top: #4b8df0;
+  --window-blue-bottom: #1f58c8;
+  --close-red: #dc4a2d;
+  --dot-blue: #a4b7e8;
+  --secondary-ink: #43547d;
+  --about-purple: #7552a9;
+  --taskbar-bg: #aebed6;
+  --taskbar-button: #d5deea;
+  --white: #fff;
+  --black: #000;
+  --taskbar-height: 44px;
+  --pixel-font: "Courier New", Courier, monospace;
+  --ui-font: Tahoma, Verdana, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--ink);
+  background: var(--body-bg);
+  font-family: var(--pixel-font);
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #ffd84d;
+  outline-offset: 2px;
+}
+
+/* ---------- CSS monitor shell ---------- */
+
+.monitor-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.crt-monitor {
+  width: 96%;
+  max-width: 1380px;
+  padding: 22px 24px 0;
+  border: 2px solid #797a80;
+  border-radius: 52px;
+  background: linear-gradient(#aaa9ad, #7e7f85);
+  box-shadow: 0 24px 38px rgba(0, 0, 0, 0.55);
+  transform: scale(0.87);
+  transform-origin: center;
+}
+
+.crt-bezel {
+  padding: 16px 18px;
+  border: 2px solid #505159;
+  border-radius: 38px;
+  background: #303138;
+  box-shadow: inset 0 0 20px #17181d;
+}
+
+.crt-screen {
+  position: relative;
+  height: 74vh;
+  min-height: 620px;
+  max-height: 780px;
+  overflow: hidden;
+  border: 2px solid #111218;
+  border-radius: 26px;
+  background: var(--black);
+  box-shadow: inset 0 0 25px var(--black);
+}
+
+.monitor-chin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88px;
+  padding: 0 34px 5px;
+}
+
+.monitor-note {
+  margin: 0;
+  padding: 7px 12px;
+  color: #4f5058;
+  background: #b9b2aa;
+  font-size: 10px;
+  font-style: italic;
+  transform: rotate(-2deg);
+}
+
+.monitor-brand {
+  color: #3f4047;
+  font-family: var(--ui-font);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-align: center;
+  text-shadow: 0 1px #c9c7cb;
+}
+
+.monitor-brand small {
+  display: block;
+  margin-top: 3px;
+  font-size: 7px;
+  letter-spacing: 3px;
+}
+
+.monitor-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.monitor-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: #4b4c54;
+  border: 2px outset #99999e;
+  border-radius: 50%;
+  background: #85858b;
+  font-size: 8px;
+}
+
+.power-led {
+  width: 11px;
+  height: 11px;
+  margin-left: 7px;
+  border: 1px solid #4e5550;
+  border-radius: 50%;
+  background: #31e66a;
+  box-shadow: 0 0 7px #47ff69;
+}
+
+/* ---------- Simple CSS-only boot ---------- */
+
+.simple-boot {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dbe2ff;
+  background: #03050a;
+  text-align: center;
+  animation: hide-boot 500ms 3500ms forwards;
+}
+
+.simple-boot-content {
+  width: 360px;
+  max-width: 80%;
+}
+
+.simple-boot h1 {
+  margin: 8px 0 12px;
+  color: white;
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+.simple-boot p {
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.boot-bar {
+  width: 100%;
+  height: 18px;
+  margin-top: 18px;
+  border: 1px solid #8094d8;
+  background: #0c1431;
+}
+
+.boot-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #8097f1;
+  animation: load-boot 3s steps(6, end) forwards;
+}
+
+@keyframes load-boot {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes hide-boot {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* ---------- Desktop ---------- */
+
+#desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  overflow: hidden;
+  background-color: var(--desktop-bg);
+  background-image:
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.78) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 34%, rgba(136, 166, 255, 0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 42% 78%, rgba(255, 255, 255, 0.52) 0 1px, transparent 2px),
+    linear-gradient(rgba(3, 10, 30, 0.12), rgba(3, 10, 30, 0.12));
+  background-position: center;
+  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-size: 150px 130px, 210px 180px, 260px 220px, cover;
+}
+
+.desktop-icons {
+  position: absolute;
+  z-index: 8;
+  top: 18px;
+  left: 12px;
+  display: flex;
+  width: 105px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.desktop-icon {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  color: white;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 2px 2px #000;
+  transition: transform 300ms ease;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.desktop-icon:hover > span:last-child,
+.desktop-icon:focus > span:last-child {
+  background: var(--blue);
+  outline: 1px dotted white;
+}
+
+.icon-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 42px;
+  color: var(--dark-blue);
+  border: 2px solid white;
+  background: linear-gradient(135deg, #fff, #aabaff);
+  box-shadow: 2px 2px #111;
+  font-family: var(--ui-font);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.icon-folder {
+  color: white;
+  background: #edb85f;
+}
+
+.icon-film {
+  color: white;
+  background: #17247e;
+}
+
+.icon-mail {
+  color: #173d9f;
+  background: #f4d9e6;
+}
+
+.icon-document {
+  background: repeating-linear-gradient(
+    to bottom,
+    #fafaff 0,
+    #fafaff 7px,
+    #8a99d1 8px,
+    #8a99d1 10px
+  );
+}
+
+.icon-trash {
+  color: #cfd4ff;
+  background: #747faf;
+}
+
+.japanese-note,
+.dream-note,
+.desktop-caption {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  color: #8ca7ff;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.45;
+  text-shadow: 0 0 7px #274dff;
+}
+
+.japanese-note {
+  top: 25px;
+  left: 14%;
+}
+
+.dream-note {
+  top: 28px;
+  right: 4%;
+  transform: rotate(-5deg);
+}
+
+.desktop-caption {
+  right: 25px;
+  bottom: 58px;
+  font-size: 12px;
+  text-align: right;
+}
+
+/* ---------- Reusable window styles ---------- */
+
+.window {
+  position: absolute;
+  overflow: hidden;
+  border: 2px solid var(--blue);
+  border-radius: 7px 7px 2px 2px;
+  background: var(--paper);
+  box-shadow: 4px 6px 0 var(--shadow);
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  height: 33px;
+  padding: 0 4px;
+  color: white;
+  border-bottom: 1px solid #0e368e;
+  background: linear-gradient(var(--window-blue-top), var(--window-blue-bottom));
+  font-family: var(--ui-font);
+  text-shadow: 1px 1px #083287;
+}
+
+.title-bar h1,
+.title-bar h2 {
+  margin: 0 0 0 7px;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.window-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+  background: #f3e66a;
+  text-shadow: none;
+}
+
+.window-controls {
+  display: flex;
+  gap: 3px;
+  margin-left: auto;
+}
+
+.window-controls span,
+.window-controls a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+  background: #326fd4;
+  font-family: var(--ui-font);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.window-controls .red-control {
+  background: var(--close-red);
+}
+
+.window-controls .close-control {
+  background: var(--close-red);
+}
+
+.menu-bar {
+  display: flex;
+  align-items: center;
+  height: 27px;
+  padding: 0 12px;
+  gap: 20px;
+  color: #222;
+  border-bottom: 1px solid #aaa;
+  background: #e7e7e3;
+  font-family: var(--ui-font);
+  font-size: 12px;
+}
+
+.small-title-bar {
+  height: 29px;
+}
+
+.small-title-bar h2 {
+  font-size: 14px;
+}
+
+/* ---------- Welcome window ---------- */
+
+.welcome-window {
+  z-index: 5;
+  top: 42px;
+  left: 17%;
+  width: 62%;
+  min-width: 650px;
+  max-width: 840px;
+}
+
+.welcome-content {
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+  padding: 22px 26px;
+  background:
+    radial-gradient(var(--dot-blue) 1px, transparent 1px),
+    var(--paper);
+  background-size: 18px 18px;
+}
+
+.welcome-profile-column {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.photo-viewer {
+  width: 220px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #9299a4;
+  background: #ecece7;
+  box-shadow: 3px 4px 0 rgba(53, 67, 111, 0.16);
+}
+
+.photo-viewer-titlebar {
+  display: flex;
+  align-items: center;
+  height: 27px;
+  padding: 0 6px;
+  color: #294b83;
+  border-bottom: 1px solid #9097a4;
+  background: var(--light-blue);
+  font-family: var(--ui-font);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.photo-viewer-titlebar span:nth-child(2) {
+  flex: 1;
+  margin-left: 7px;
+}
+
+.photo-viewer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #8e96a1;
+  background: #e1e2e4;
+}
+
+.profile-photo-frame {
+  width: 204px;
+  height: 255px;
+  margin: 7px;
+  overflow: hidden;
+  border: 1px solid #a7a8a4;
+  background: #d9e0e9;
+}
+
+.profile-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-viewer-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px 6px;
+  color: #66738b;
+  font-family: var(--ui-font);
+  font-size: 8px;
+}
+
+.folder-list {
+  margin: 12px 0 0;
+  padding: 9px;
+  list-style: none;
+  border: 1px solid #8c9ad0;
+  background: rgba(246, 245, 237, 0.94);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.folder-list li {
+  margin: 2px 0;
+}
+
+.folder-list a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 2px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.folder-list a:hover,
+.folder-list a:focus {
+  color: white;
+  background: var(--blue);
+}
+
+.mini-folder {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 13px;
+  flex-shrink: 0;
+  border: 1px solid #926834;
+  background: #efbd63;
+}
+
+.mini-folder::before {
+  position: absolute;
+  top: -4px;
+  left: 2px;
+  width: 9px;
+  height: 4px;
+  border: 1px solid #926834;
+  border-bottom: 0;
+  background: #f6d27b;
+  content: "";
+}
+
+.welcome-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  padding: 8px 0 4px;
+}
+
+.logo-lockup {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #aeb9d8;
+}
+
+.logo-lockup h1 {
+  margin: 0;
+  color: var(--blue);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 64px;
+  font-style: italic;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-shadow: 1px 1px #a7bced;
+}
+
+.logo-lockup p {
+  margin: 5px 0 0 4px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.intro-copy {
+  margin-top: 22px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.intro-copy p {
+  max-width: 440px;
+  margin: 0 0 20px;
+}
+
+.tiny-manifesto {
+  margin: auto 0 0;
+  color: #6d83c9;
+  font-size: 10px;
+  text-align: right;
+}
+
+/* ---------- Project preview window ---------- */
+
+.projects-window {
+  z-index: 3;
+  bottom: 55px;
+  left: 13%;
+  width: 54%;
+  min-width: 580px;
+  max-width: 720px;
+}
+
+.project-list {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--paper);
+}
+
+.project-card {
+  min-width: 0;
+  flex: 1;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.project-image {
+  position: relative;
+  height: 105px;
+  overflow: hidden;
+  border: 3px solid white;
+  outline: 1px solid var(--line);
+  transition: transform 300ms ease;
+}
+
+.project-card:hover .project-image,
+.project-card:focus .project-image {
+  transform: scale(1.04);
+  outline: 3px solid var(--blue);
+}
+
+.project-card p {
+  margin: 7px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.jadeite-project-art {
+  background: #e9f5eb;
+}
+
+.jadeite-project-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.one-sided-project-art {
+  background: #080808;
+}
+
+.one-sided-project-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.find-me-project-art {
+  background: #e8f4e5;
+}
+
+.find-me-project-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.idore-project-art {
+  background: #efe8d8;
+}
+
+.idore-project-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hair-archive-art {
+  background: linear-gradient(#724a89, #eb7f95 54%, #1a2454 55%);
+}
+
+.moon {
+  position: absolute;
+  top: 14px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff0a5;
+  box-shadow: 0 0 10px #fff0a5;
+}
+
+.horizon {
+  position: absolute;
+  right: 0;
+  bottom: 22px;
+  left: 0;
+  height: 2px;
+  background: #ec7a92;
+}
+
+.short-films {
+  background: #090b25;
+}
+
+.screen-cat {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 100%;
+  color: #9eafe7;
+  font-size: 25px;
+  text-align: center;
+}
+
+.web-experiment-art {
+  background: linear-gradient(#3859bd, #86a4eb 49%, #263d88 50%);
+}
+
+.cloud {
+  position: absolute;
+  width: 85px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(235, 240, 255, 0.78);
+}
+
+.cloud-a {
+  top: 20px;
+  left: 10px;
+}
+
+.cloud-b {
+  right: -10px;
+  bottom: 24px;
+  width: 115px;
+}
+
+/* ---------- Decorative music window ---------- */
+
+.music-window {
+  z-index: 6;
+  right: 5%;
+  bottom: 70px;
+  width: 270px;
+}
+
+.music-content {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 12px 16px;
+}
+
+.disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  background: #c5d5ef;
+}
+
+.disc span {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.music-content p {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.track-progress {
+  width: 150px;
+  height: 10px;
+  border: 1px solid var(--dark-blue);
+  background: white;
+}
+
+.track-progress span {
+  display: block;
+  width: 35%;
+  height: 100%;
+  background: var(--blue);
+}
+
+.music-content .player-buttons {
+  margin-top: 7px;
+  text-align: center;
+}
+
+/* ---------- CSS-only modal windows ---------- */
+
+.modal {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  opacity: 0;
+  background: rgba(8, 15, 43, 0.68);
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window {
+  position: relative;
+  width: 470px;
+  max-width: 92%;
+}
+
+.about-window {
+  width: 760px;
+  max-height: 86%;
+  overflow: auto;
+}
+
+.about-content {
+  padding: 24px;
+  background:
+    radial-gradient(#afbee3 1px, transparent 1px),
+    var(--paper);
+  background-size: 18px 18px;
+}
+
+.about-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #9aa5c3;
+}
+
+.about-avatar {
+  width: 132px;
+  height: 104px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 4px ridge #8798cf;
+  background: #7655b0;
+}
+
+.about-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.about-content h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.about-content p {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.about-content .about-label {
+  margin-bottom: 7px;
+  color: var(--about-purple);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.about-chinese {
+  color: var(--secondary-ink);
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 500 !important;
+}
+
+.about-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.about-block {
+  width: calc(50% - 6px);
+  padding: 13px;
+  border: 1px solid #a4aec7;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.about-block-wide {
+  width: 100%;
+}
+
+.toolkit-list p:last-child {
+  margin-bottom: 0;
+}
+
+.toolkit-list strong {
+  color: var(--about-purple);
+}
+
+.contact-window {
+  width: 500px;
+}
+
+.contact-content {
+  padding: 20px 24px 24px;
+  background:
+    radial-gradient(var(--dot-blue) 1px, transparent 1px),
+    var(--paper);
+  background-size: 18px 18px;
+}
+
+.contact-content > p {
+  margin: 0 0 15px;
+  font-weight: 700;
+}
+
+.contact-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-content label {
+  margin: 9px 0 4px;
+  color: var(--dark-blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-content input,
+.contact-content textarea {
+  width: 100%;
+  padding: 8px;
+  color: #20295c;
+  border: 1px solid var(--line);
+  background: #fffef9;
+  font-family: var(--ui-font);
+}
+
+.contact-content textarea {
+  resize: vertical;
+}
+
+.contact-content button {
+  width: 150px;
+  margin: 16px 0 0 auto;
+  padding: 9px;
+  color: white;
+  border: 2px outset #8aa5de;
+  background: var(--blue);
+  font-family: var(--pixel-font);
+  cursor: pointer;
+  transition: transform 300ms ease;
+}
+
+.contact-content button:hover,
+.contact-content button:focus {
+  transform: translateY(-3px);
+}
+
+.secret-window {
+  width: 360px;
+}
+
+.trash-window {
+  width: 360px;
+}
+
+.secret-content,
+.trash-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 130px;
+  padding: 20px;
+}
+
+.secret-content > span,
+.trash-content > span {
+  color: #f0d55d;
+  font-size: 40px;
+}
+
+.secret-content p,
+.trash-content p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* ---------- Taskbar ---------- */
+
+.taskbar {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--taskbar-height);
+  padding: 4px 7px;
+  color: #092a84;
+  border-top: 2px solid white;
+  background: var(--taskbar-bg);
+  font-family: var(--ui-font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.start-button,
+.task-tabs span,
+.task-tabs a,
+.system-tray {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 10px;
+  border: 2px outset #dfe7ef;
+  background: var(--taskbar-button);
+  text-decoration: none;
+}
+
+.start-button {
+  min-width: 105px;
+  justify-content: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.start-button span {
+  margin-right: 6px;
+  color: var(--blue);
+  font-size: 18px;
+}
+
+.task-tabs {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  gap: 5px;
+}
+
+.task-tabs span,
+.task-tabs a {
+  width: 185px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.task-tabs .active-tab {
+  border-style: inset;
+  background: #bfcbdc;
+}
+
+.system-tray {
+  margin-left: auto;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/* ---------- Projects page ---------- */
+
+.projects-page .crt-screen {
+  overflow: auto;
+}
+
+.projects-page #desktop {
+  height: auto;
+  min-height: 900px;
+  padding: 1px 0 70px;
+}
+
+.archive-window {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 90%;
+  max-width: 1040px;
+  margin: 34px auto 25px;
+}
+
+.archive-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 15px;
+  border-bottom: 1px solid var(--line);
+  background: #e3e7ef;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.archive-content {
+  padding: 26px;
+  background: var(--paper);
+}
+
+.archive-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed #7584ba;
+}
+
+.archive-kicker {
+  width: 100%;
+  margin: 0;
+  color: #7566a1;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.archive-intro h2 {
+  margin: 0;
+  color: var(--blue);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 48px;
+  font-style: italic;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.archive-intro > p:last-child {
+  width: 44%;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.archive-project {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0 0 20px;
+  padding: 18px;
+  border: 1px solid #8793bc;
+  background: #f8f7f0;
+  box-shadow: 4px 4px 0 rgba(44, 63, 128, 0.18);
+  transition: transform 300ms ease;
+}
+
+.archive-project:hover {
+  transform: translateY(-4px);
+}
+
+.archive-project:target {
+  outline: 4px solid #617cee;
+  background: #eef0ff;
+}
+
+.archive-number {
+  width: 55px;
+  flex-shrink: 0;
+  color: #b4bde0;
+  font-family: Impact, sans-serif;
+  font-size: 48px;
+  font-style: italic;
+}
+
+.archive-art {
+  position: relative;
+  width: 250px;
+  height: 145px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 4px solid white;
+  outline: 1px solid #6f79a1;
+}
+
+.archive-copy {
+  flex: 1;
+}
+
+.archive-copy .file-type {
+  margin: 0 0 4px;
+  color: #7c75a9;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.archive-copy h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 26px;
+}
+
+.archive-copy > p:not(.file-type) {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.archive-copy .project-chinese {
+  color: var(--secondary-ink);
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 500;
+}
+
+.archive-art.jadeite-project-art {
+  width: 310px;
+  height: 190px;
+}
+
+.archive-art.jadeite-project-art img {
+  object-fit: cover;
+  transform: scale(1.018);
+}
+
+.archive-art.one-sided-project-art {
+  width: 310px;
+  height: 190px;
+}
+
+.archive-art.one-sided-project-art img {
+  object-fit: cover;
+  transform: scale(1.012);
+}
+
+.archive-art.find-me-project-art {
+  width: 310px;
+  height: 190px;
+}
+
+.archive-art.find-me-project-art img {
+  object-fit: cover;
+  transform: scale(1.01);
+}
+
+.archive-art.idore-project-art {
+  width: 310px;
+  height: 190px;
+}
+
+.archive-art.idore-project-art img {
+  object-fit: cover;
+  transform: scale(1.01);
+}
+
+/* The project image takes a full row, then the writing sits under it. */
+.featured-project {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+.featured-project .archive-art.jadeite-project-art,
+.featured-project .archive-art.one-sided-project-art,
+.featured-project .archive-art.find-me-project-art,
+.featured-project .archive-art.idore-project-art {
+  width: calc(100% - 77px);
+  height: auto;
+  aspect-ratio: 1.63 / 1;
+}
+
+.featured-project .archive-copy {
+  width: calc(100% - 77px);
+  margin-left: 77px;
+  flex: none;
+}
+
+.zoomable-image {
+  color: inherit;
+  cursor: zoom-in;
+  text-decoration: none;
+}
+
+.zoomable-image::after {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 5px 7px;
+  color: white;
+  background: rgba(20, 55, 143, 0.82);
+  content: "CLICK TO ENLARGE +";
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.zoomable-image:hover::after,
+.zoomable-image:focus::after {
+  opacity: 1;
+}
+
+.video-preview::after {
+  content: "CLICK TO WATCH ▶";
+}
+
+/* CSS-only image preview: the link changes the URL target to this section. */
+.image-lightbox {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  background: rgba(8, 15, 43, 0.9);
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+
+.image-lightbox:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-window {
+  width: 92vw;
+  max-width: 1100px;
+}
+
+.lightbox-window h2 {
+  font-size: 14px;
+}
+
+.lightbox-image-viewport {
+  overflow: hidden;
+  border: 8px solid var(--paper);
+  background: var(--paper);
+  line-height: 0;
+}
+
+.lightbox-image-viewport img {
+  display: block;
+  width: calc(100% + 8px);
+  height: auto;
+  margin: -4px;
+}
+
+.video-link {
+  text-decoration: none;
+}
+
+.video-lightbox-window {
+  width: 88vw;
+  max-width: 360px;
+}
+
+.video-embed {
+  background: #000;
+}
+
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+}
+
+.external-video-link {
+  display: block;
+  padding: 9px 12px;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.status-label {
+  display: inline-block;
+  padding: 7px 10px;
+  color: white;
+  background: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.projects-page .taskbar {
+  bottom: 0;
+}
+
+/* ---------- Compact desktop layout ---------- */
+
+/*
+   A browser window can be narrower than a laptop screen, especially inside
+   the in-app preview. This keeps the desktop composition intact between the
+   full desktop layout and the stacked phone layout.
+*/
+@media (min-width: 769px) and (max-width: 1024px) {
+  .crt-monitor {
+    width: 98%;
+    transform: scale(0.82);
+  }
+
+  .welcome-window {
+    left: 16%;
+    width: 80%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .welcome-content {
+    gap: 16px;
+    padding: 16px 18px;
+  }
+
+  .welcome-profile-column,
+  .photo-viewer {
+    width: 180px;
+  }
+
+  .profile-photo-frame {
+    width: 164px;
+    height: 205px;
+  }
+
+  .folder-list {
+    margin-top: 9px;
+    padding: 7px;
+    font-size: 9px;
+  }
+
+  .folder-list a {
+    gap: 6px;
+  }
+
+  .mini-folder {
+    width: 16px;
+    height: 11px;
+  }
+
+  .logo-lockup {
+    padding-bottom: 12px;
+  }
+
+  .logo-lockup h1 {
+    font-size: 48px;
+  }
+
+  .logo-lockup p {
+    font-size: 10px;
+  }
+
+  .intro-copy {
+    margin-top: 14px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .intro-copy p {
+    margin-bottom: 12px;
+  }
+
+  .tiny-manifesto {
+    font-size: 8px;
+  }
+
+  .projects-window {
+    left: 10%;
+    width: 58%;
+    min-width: 0;
+  }
+
+  .project-list {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .project-image {
+    height: 82px;
+  }
+
+  .project-card p {
+    font-size: 9px;
+  }
+
+  .music-window {
+    right: 3%;
+    bottom: 62px;
+    width: 235px;
+  }
+
+  .music-content {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .disc {
+    width: 50px;
+    height: 50px;
+  }
+
+  .track-progress {
+    width: 120px;
+  }
+
+  .start-button {
+    min-width: 90px;
+  }
+
+  .task-tabs span,
+  .task-tabs a {
+    width: 140px;
+  }
+
+  .home-page .task-tabs > :nth-child(1) {
+    width: 170px;
+  }
+
+  .home-page .task-tabs > :nth-child(2) {
+    width: 140px;
+  }
+
+  .home-page .task-tabs > :nth-child(3) {
+    width: 90px;
+  }
+}
+
+/* Leave a little air around the monitor in short desktop browser windows. */
+@media (min-width: 769px) and (max-height: 700px) {
+  .crt-monitor {
+    transform: scale(0.82);
+  }
+}
+
+/* ---------- Week 06: one clear phone breakpoint ---------- */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .monitor-stage {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding: 4px;
+  }
+
+  .crt-monitor {
+    width: 100%;
+    padding: 8px 8px 0;
+    border-radius: 28px;
+    transform: none;
+  }
+
+  .crt-bezel {
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .crt-screen {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: auto;
+    border-radius: 14px;
+  }
+
+  .monitor-chin {
+    height: 68px;
+    padding: 0 14px;
+  }
+
+  .monitor-note,
+  .monitor-button {
+    display: none;
+  }
+
+  .monitor-brand {
+    font-size: 17px;
+  }
+
+  #desktop {
+    height: auto;
+    min-height: 0;
+    padding: 18px 0 0;
+    overflow: visible;
+  }
+
+  .desktop-icons {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    width: auto;
+    padding: 0 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .desktop-icon {
+    width: 78px;
+    font-size: 10px;
+  }
+
+  .icon-picture {
+    width: 40px;
+    height: 38px;
+    font-size: 21px;
+  }
+
+  .window-controls a {
+    width: 32px;
+    height: 32px;
+  }
+
+  .japanese-note,
+  .dream-note,
+  .desktop-caption {
+    display: none;
+  }
+
+  .welcome-window,
+  .projects-window,
+  .music-window {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 94%;
+    min-width: 0;
+    max-width: none;
+    margin: 20px auto;
+  }
+
+  .welcome-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 20px;
+  }
+
+  .welcome-profile-column {
+    width: 100%;
+  }
+
+  .photo-viewer {
+    margin: 0 auto;
+  }
+
+  .folder-list {
+    width: 280px;
+    max-width: 100%;
+    margin: 12px auto 0;
+  }
+
+  .welcome-copy {
+    width: 100%;
+  }
+
+  .logo-lockup h1 {
+    font-size: 50px;
+  }
+
+  .tiny-manifesto {
+    margin-top: 22px;
+  }
+
+  .project-list {
+    flex-direction: column;
+  }
+
+  .project-image {
+    height: 145px;
+  }
+
+  .music-window {
+    width: 86%;
+  }
+
+  .modal {
+    position: fixed;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  .modal-window {
+    width: 94%;
+    max-height: 88vh;
+    overflow: auto;
+  }
+
+  .about-content {
+    text-align: center;
+  }
+
+  .about-heading {
+    flex-direction: column;
+  }
+
+  .about-sections {
+    display: block;
+  }
+
+  .about-block,
+  .about-block-wide {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .taskbar {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .task-tabs {
+    order: 3;
+    width: 100%;
+  }
+
+  .task-tabs span,
+  .task-tabs a {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    font-size: 10px;
+  }
+
+  .system-tray {
+    margin-left: auto;
+    font-size: 10px;
+  }
+
+  .projects-page #desktop {
+    min-height: 0;
+    padding-bottom: 0;
+  }
+
+  .archive-window {
+    width: 94%;
+    margin: 20px auto;
+  }
+
+  .archive-content {
+    padding: 16px;
+  }
+
+  .archive-intro {
+    display: block;
+  }
+
+  .archive-intro h2 {
+    margin: 12px 0 16px;
+    font-size: 38px;
+  }
+
+  .archive-intro > p:last-child {
+    width: 100%;
+  }
+
+  .archive-project {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .featured-project {
+    display: flex;
+  }
+
+  .featured-project .archive-art.jadeite-project-art,
+  .featured-project .archive-art.one-sided-project-art,
+  .featured-project .archive-art.find-me-project-art,
+  .featured-project .archive-art.idore-project-art,
+  .featured-project .archive-copy {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .archive-number {
+    width: auto;
+  }
+
+  .archive-art {
+    width: 100%;
+  }
+
+  .projects-page .taskbar {
+    position: relative;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
