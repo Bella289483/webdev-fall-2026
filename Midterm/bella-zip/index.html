@@ -16,7 +16,7 @@
       <section class="crt-monitor" aria-label="BELLA CRT monitor">
         <div class="crt-bezel">
           <div class="crt-screen">
-            <!-- A short CSS-only boot screen. No JavaScript is needed. -->
+            <!-- This loading screen is made with the Week 07 keyframe lesson. -->
             <div class="simple-boot" aria-hidden="true">
               <div class="simple-boot-content">
                 <p>BELLA PERSONAL COMPUTER</p>
@@ -39,7 +39,12 @@
                   <span>ABOUT_ME</span>
                 </a>
 
-                <a class="desktop-icon" href="projects.html#short-films">
+                <a
+                  class="desktop-icon"
+                  href="https://www.youtube.com/@BellaLi-e7t"
+                  target="_blank"
+                  rel="noopener"
+                >
                   <span class="icon-picture icon-film" aria-hidden="true">▶</span>
                   <span>FILMS</span>
                 </a>
@@ -54,10 +59,10 @@
                   <span>SECRET.TXT</span>
                 </a>
 
-                <span class="desktop-icon">
+                <a class="desktop-icon" href="#trash-window">
                   <span class="icon-picture icon-trash" aria-hidden="true">▥</span>
                   <span>TRASH</span>
-                </span>
+                </a>
               </nav>
 
               <p class="japanese-note" aria-hidden="true">
@@ -91,20 +96,22 @@
 
                       <div class="profile-photo-frame">
                         <img
-                          src="assets/bella-profile.png"
+                          src="assets/bella-profile.jpg"
                           alt="Portrait of Bella against a soft blue background"
+                          width="600"
+                          height="750"
                         />
                       </div>
 
                       <div class="photo-viewer-status" aria-hidden="true">
-                        <span>PORTRAIT</span><span>1122 × 1402</span>
+                        <span>PORTRAIT</span><span>600 × 750</span>
                       </div>
                     </figure>
 
                     <ul class="folder-list" aria-label="Portfolio sections">
                       <li><a href="projects.html"><span class="mini-folder" aria-hidden="true"></span>PROJECTS →</a></li>
                       <li><a href="#about-window"><span class="mini-folder" aria-hidden="true"></span>ABOUT ME →</a></li>
-                      <li><a href="projects.html#short-films"><span class="mini-folder" aria-hidden="true"></span>FILMS →</a></li>
+                      <li><a href="projects.html#idore-cast-pass"><span class="mini-folder" aria-hidden="true"></span>IDORE DESIGN →</a></li>
                       <li><a href="#contact-window"><span class="mini-folder" aria-hidden="true"></span>CONTACT →</a></li>
                     </ul>
                   </div>
@@ -129,7 +136,7 @@
                       </p>
                     </div>
 
-                    <p class="tiny-manifesto">
+                    <p class="tiny-manifesto" id="random-note">
                       🪐 good ideas, strange days, and changing hair colors
                     </p>
                   </div>
@@ -147,26 +154,32 @@
                 </header>
 
                 <div class="project-list">
-                  <a class="project-card" href="projects.html#hair-archive">
-                    <div class="project-image hair-archive-art" aria-hidden="true">
-                      <span class="moon"></span><span class="horizon"></span>
+                  <a class="project-card" href="projects.html#jadeite-app">
+                    <div class="project-image jadeite-project-art">
+                      <img src="assets/jadeite-project.jpg" alt="Jadeite app interface and user testing process" width="1200" height="735" loading="lazy" />
                     </div>
-                    <p>01. hair archive ↗</p>
+                    <p>01. jadeite app ↗</p>
                   </a>
 
-                  <a class="project-card" href="projects.html#short-films">
-                    <div class="project-image short-films" aria-hidden="true">
-                      <span class="screen-cat">● ᴥ ●</span>
+                  <a class="project-card" href="projects.html#one-sided">
+                    <div class="project-image one-sided-project-art">
+                      <img src="assets/one-sided-project.jpg" alt="Red and black TouchDesigner projection" width="1200" height="735" loading="lazy" />
                     </div>
-                    <p>02. short films ↗</p>
+                    <p>02. one sided ↗</p>
                   </a>
 
-                  <a class="project-card" href="projects.html#web-experiments">
-                    <div class="project-image web-experiment-art" aria-hidden="true">
-                      <span class="cloud cloud-a"></span>
-                      <span class="cloud cloud-b"></span>
+                  <a class="project-card" href="projects.html#find-me-adopt-me">
+                    <div class="project-image find-me-project-art">
+                      <img src="assets/find-me-adopt-me.jpg" alt="Find Me Adopt Me stray dog campaign" width="1200" height="733" loading="lazy" />
                     </div>
-                    <p>03. web experiments ↗</p>
+                    <p>03. find me, adopt me ↗</p>
+                  </a>
+
+                  <a class="project-card" href="projects.html#idore-cast-pass">
+                    <div class="project-image idore-project-art">
+                      <img src="assets/idore-cast-pass.jpg" alt="IDORE Resident Cast Pass artist card design" width="1200" height="757" loading="lazy" />
+                    </div>
+                    <p>04. IDORE cast pass ↗</p>
                   </a>
                 </div>
               </section>
@@ -190,18 +203,84 @@
 
               <!-- Week 07: these popups open with the CSS :target selector. -->
               <section class="modal" id="about-window" aria-labelledby="about-title">
-                <div class="window modal-window">
+                <div class="window modal-window about-window">
                   <header class="title-bar">
                     <span class="window-mark" aria-hidden="true">★</span>
                     <h2 id="about-title">about_bella.txt</h2>
-                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close About Me">×</a></div>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close About Me">×</a></div>
                   </header>
                   <div class="about-content">
-                    <div class="about-avatar" aria-hidden="true">B</div>
-                    <div>
-                      <h3>Hi, I'm Bella!</h3>
-                      <p>I make playful websites, short films and strange little internet worlds.</p>
-                      <p class="about-status">STATUS: currently changing my hair again...</p>
+                    <div class="about-heading">
+                      <div class="about-avatar">
+                        <img src="assets/bella-about.jpg" alt="Portrait of Bella in pink and blue light" width="480" height="320" loading="lazy" />
+                      </div>
+                      <div>
+                        <p class="about-label">HELLO / 你好</p>
+                        <h3>Hi, I'm Bella Li!</h3>
+                        <p>
+                          I'm an Interactive Media Arts student at NYU Tisch, minoring in Business of
+                          Entertainment, Media, and Technology. My work brings together AI filmmaking,
+                          interactive design, and visual storytelling.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我是 Bella，就读于纽约大学 Tisch 交互媒体艺术专业，辅修娱乐、媒体与科技商业。我的创作结合 AI 影像、交互设计与视觉叙事。
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="about-sections">
+                      <section class="about-block">
+                        <p class="about-label">01 / WHAT I CREATE</p>
+                        <p>
+                          I create interactive websites, AI-generated videos, and photographic stories.
+                          I'm drawn to characters, atmosphere, and the small details that make an
+                          experience feel personal.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我创作交互网页、AI 视频与摄影作品，关注角色、氛围，以及那些让观众产生情感连接的小细节。我喜欢把一个想法逐步变成可以观看、探索和参与的作品。
+                        </p>
+                      </section>
+
+                      <section class="about-block about-block-wide">
+                        <p class="about-label">02 / INTERNSHIP EXPERIENCE</p>
+                        <p>
+                          During the summer after my first year, I worked as an AIGC intern,
+                          contributing to video scripts, storyboards, AI image and video generation,
+                          and editing. Videos I contributed to have received over 10 million combined views.
+                        </p>
+                        <p>
+                          In my second year, I joined IDORE as an Overseas Product Operations Intern,
+                          working on North American audience and competitor research, social media
+                          content planning, and character-focused AIGC videos.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          大一暑假，我担任 AIGC 实习生，参与视频的脚本与分镜策划、AI 图像与视频生成，以及后期剪辑，积累了从创意到成片的制作经验，参与制作的多条作品累计播放量超过千万。
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          大二期间，我作为海外产品运营实习生参与 IDORE，开展北美用户与竞品研究、社交媒体内容策划及角色 AIGC 视频创作，探索游戏与角色面向海外用户的传播方式。
+                        </p>
+                      </section>
+
+                      <section class="about-block">
+                        <p class="about-label">03 / CAMPUS EXPERIENCE</p>
+                        <p>
+                          As part of the NYUCSSA PR team, I contribute to event promotion and poster
+                          design. I turn event themes and key information into visual materials that
+                          connect with the campus community.
+                        </p>
+                        <p class="about-chinese" lang="zh-CN">
+                          我在纽约大学中国学生学者联谊会 NYUCSSA 的 PR 部门参与活动宣传策划与海报设计，将活动主题和信息转化为面向校园学生的视觉内容，兼顾视觉吸引力与信息清晰度。
+                        </p>
+                      </section>
+
+                      <section class="about-block about-block-wide">
+                        <p class="about-label">04 / MY TOOLKIT</p>
+                        <div class="toolkit-list">
+                          <p><strong>Design &amp; Video / 设计与影像</strong><br />Figma · Photoshop · Premiere Pro</p>
+                          <p><strong>Creative Coding / 创意编程</strong><br />HTML · CSS · JavaScript · p5.js</p>
+                          <p><strong>AI Creation / AI 创作</strong><br />Kling AI · Runway · Midjourney · Stable Diffusion</p>
+                        </div>
+                      </section>
                     </div>
                   </div>
                 </div>
@@ -212,24 +291,25 @@
                   <header class="title-bar">
                     <span class="window-mark" aria-hidden="true">@</span>
                     <h2 id="contact-title">contact_bella.html</h2>
-                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close contact form">×</a></div>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close contact form">×</a></div>
                   </header>
 
                   <div class="contact-content">
                     <p>Send me a message ♡</p>
 
-                    <!-- This is a front-end demo form. Formspree can be connected later. -->
-                    <form action="#" method="get">
+                    <!-- Replace # with my Formspree link before publishing. -->
+                    <form action="#" method="POST">
                       <label for="contact-name">Name</label>
-                      <input id="contact-name" name="name" type="text" required />
+                      <input id="contact-name" name="name" type="text" autocomplete="name" required />
 
                       <label for="contact-email">Email</label>
-                      <input id="contact-email" name="email" type="email" required />
+                      <input id="contact-email" name="email" type="email" autocomplete="email" required />
 
                       <label for="contact-message">Message</label>
                       <textarea id="contact-message" name="message" rows="4" required></textarea>
 
                       <button type="submit">SEND MESSAGE</button>
+                      <input type="hidden" name="subject" value="New message from BELLA.ZIP" />
                     </form>
                   </div>
                 </div>
@@ -240,11 +320,25 @@
                   <header class="title-bar">
                     <span class="window-mark" aria-hidden="true">?</span>
                     <h2 id="secret-title">secret.txt</h2>
-                    <div class="window-controls"><a class="red-control" href="#" aria-label="Close secret">×</a></div>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close secret">×</a></div>
                   </header>
                   <div class="secret-content">
                     <span aria-hidden="true">★</span>
                     <p>you found a secret :)<br /><small>hair color archive coming next...</small></p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="modal" id="trash-window" aria-labelledby="trash-title">
+                <div class="window modal-window trash-window">
+                  <header class="title-bar">
+                    <span class="window-mark" aria-hidden="true">▥</span>
+                    <h2 id="trash-title">trash</h2>
+                    <div class="window-controls"><a class="red-control" href="#desktop" aria-label="Close trash">×</a></div>
+                  </header>
+                  <div class="trash-content">
+                    <span aria-hidden="true">✧</span>
+                    <p>Trash is empty.<br /><small>nothing lost, nothing forgotten.</small></p>
                   </div>
                 </div>
               </section>
@@ -276,5 +370,7 @@
         </div>
       </section>
     </div>
+    <!-- Week 09: the script goes last so the page is already loaded. -->
+    <script src="script.js"></script>
   </body>
 </html>
