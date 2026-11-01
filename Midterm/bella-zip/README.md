@@ -66,12 +66,6 @@ The six page images are about 86% smaller in total. I also added useful alt text
 
 ## Responsive check
 
-I checked the layout at a 390px browser width. There was no horizontal page overflow, the windows stayed readable and all modal content could scroll. I still need to do the final check on my actual phone before submitting.
+I tested the website on my actual phone. I checked the home page, projects page, navigation, images and popup windows. The pages did not have horizontal overflow and the content was still readable.
 
-## Before I submit
-
-- Replace the contact form's `action="#"` with my real Formspree endpoint.
-- Push the repository to GitHub.
-- Turn on GitHub Pages from the `main` branch.
-- Add the live link at the top of this README.
-- Open both pages on my phone and send one test message through the form.
+I also submitted a test message through the contact form and confirmed that it appeared in my Formspree submissions.
