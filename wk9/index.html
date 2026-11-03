@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <main class="trip-card">
+      <header>
+        <p class="kicker" id="kicker"></p>
+        <h1 id="title"></h1>
+        <p class="summary" id="summary"></p>
+      </header>
+
+      <img id="trip-image" src="" alt="" />
+      <p class="photo-credit" id="photo-credit"></p>
+      <p class="status" id="status"></p>
+
+      <section>
+        <h2 id="budget-heading"></h2>
+        <p class="line" id="hotel-line"></p>
+        <p class="line" id="food-line"></p>
+        <p class="line" id="activity-line"></p>
+        <p class="line" id="transport-line"></p>
+        <p class="line" id="fee-line"></p>
+
+        <p class="total">
+          <span id="total-label"></span>
+          <strong id="total"></strong>
+        </p>
+
+        <p class="small-text" id="per-person"></p>
+      </section>
+
+      <section>
+        <h2 id="plan-heading"></h2>
+        <ul class="plan-list" id="plan-list"></ul>
+        <p class="small-text" id="trip-note"></p>
+      </section>
+
+      <footer>
+        <p id="reload-note"></p>
+      </footer>
+    </main>
+
+    <script>
+      // Lists used to make a different trip each time the page loads
+      const destinations = ['Kyoto', 'Lisbon', 'Montréal', 'Mexico City']
+
+      const images = [
+        'img/kyoto.jpg',
+        'img/lisbon.jpg',
+        'img/montreal.jpg',
+        'img/mexico-city.jpg',
+      ]
+
+      const imageAlts = [
+        'A street in Kyoto',
+        'A view of Lisbon',
+        'The Montréal skyline',
+        'The Mexico City skyline',
+      ]
+
+      const photoCredits = [
+        'Photo by Ravi Dwivedi',
+        'Photo by CrisLuiz',
+        'Photo by Quintin Soloviev',
+        "Photo by Leandro's World Tour",
+      ]
+
+      const tripStyles = [
+        'food trip',
+        'museum trip',
+        'photo trip',
+        'slow travel weekend',
+        'nature trip',
+      ]
+
+      const activities = [
+        'Visit a local museum',
+        'Walk through a neighborhood market',
+        'Rent a bike for the afternoon',
+        'Find a good view of the city',
+        'Explore a public garden',
+        'Visit an independent bookstore',
+        'Take an architecture walk',
+      ]
+
+      const foodStops = [
+        'Try a popular breakfast place',
+        'Get lunch from a street market',
+        'Visit a small neighborhood bakery',
+        'Book dinner at a local restaurant',
+        'Find a late-night dessert',
+        'Try a cafe away from the tourist area',
+      ]
+
+      const travelTips = [
+        'Leave one hour with no plan',
+        'Use public transportation for the day',
+        'Bring a camera and comfortable shoes',
+      ]
+
+      const colors = ['#d25b45', '#287c72', '#4968a8', '#a35e2d', '#76549b']
+
+      // Pick one item from any array
+      function pickRandom(list) {
+        const index = Math.floor(Math.random() * list.length)
+        return list[index]
+      }
+
+      // Pick a whole number including the minimum and maximum
+      function randomBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+      }
+
+      // The same index keeps the city and its photo together
+      const destinationIndex = randomBetween(0, destinations.length - 1)
+      const destination = destinations[destinationIndex]
+      const tripImage = images[destinationIndex]
+      const imageAlt = imageAlts[destinationIndex]
+      const photoCredit = photoCredits[destinationIndex]
+
+      const tripStyle = pickRandom(tripStyles)
+      const days = randomBetween(2, 5)
+      const nights = days - 1
+      const travelers = randomBetween(1, 4)
+
+      const hotelPrice = randomBetween(90, 220)
+      const foodPerDay = randomBetween(35, 75)
+      const activityPrice = randomBetween(20, 100)
+      const transportPrice = randomBetween(30, 100)
+      const feeRate = 0.08
+      const budget = randomBetween(450, 850) * travelers
+
+      // Do all the math before using toFixed
+      const hotelTotal = hotelPrice * nights
+      const foodTotal = foodPerDay * days * travelers
+      const activityTotal = activityPrice * travelers
+      const subtotal = hotelTotal + foodTotal + activityTotal + transportPrice
+      const fee = subtotal * feeRate
+      const total = subtotal + fee
+      const perPerson = total / travelers
+      const difference = Math.abs(budget - total)
+
+      // These two booleans come from comparisons
+      const isLongTrip = days >= 4
+      const isOverBudget = total > budget
+
+      // A ternary chooses a value
+      const pace = isLongTrip ? 'relaxed' : 'busy'
+      const personWord = travelers === 1 ? 'person' : 'people'
+      const nightWord = nights === 1 ? 'night' : 'nights'
+
+      // Template literal with several variables
+      const summary = `${days} days in ${destination} for ${travelers} ${personWord}. This is a ${tripStyle}.`
+
+      // Three possible messages
+      let statusMessage
+
+      if (isOverBudget) {
+        statusMessage = `Over budget by $${difference.toFixed(2)}`
+      } else if (total < budget * 0.75) {
+        statusMessage = `Plenty of room — $${difference.toFixed(2)} left`
+      } else {
+        statusMessage = `Nicely balanced — $${difference.toFixed(2)} left`
+      }
+
+      // Make a short list for the trip
+      const planLabels = ['Activity', 'Food stop', 'Reminder']
+      const tripPlan = [
+        pickRandom(activities),
+        pickRandom(foodStops),
+        pickRandom(travelTips),
+      ]
+
+      let planHTML = ''
+
+      for (let i = 0; i < tripPlan.length; i++) {
+        const stripe = i % 2 === 0 ? 'stripe' : ''
+        planHTML += `<li class="${stripe}"><span>${planLabels[i]}</span>${tripPlan[i]}</li>`
+      }
+
+      // Put everything on the page
+      document.title = `${destination} Trip Generator`
+      document.querySelector('#kicker').textContent = 'Random weekend trip'
+      document.querySelector('#title').textContent = destination
+      document.querySelector('#summary').textContent = summary
+
+      document.querySelector('#trip-image').src = tripImage
+      document.querySelector('#trip-image').alt = imageAlt
+      document.querySelector('#photo-credit').textContent = photoCredit
+      document.querySelector('#status').textContent = statusMessage
+
+      document.querySelector('#budget-heading').textContent = 'Estimated budget'
+      document.querySelector('#hotel-line').textContent =
+        `${nights} ${nightWord} at $${hotelPrice.toFixed(2)} — $${hotelTotal.toFixed(2)}`
+      document.querySelector('#food-line').textContent =
+        `Food for ${travelers} ${personWord} — $${foodTotal.toFixed(2)}`
+      document.querySelector('#activity-line').textContent =
+        `Activities — $${activityTotal.toFixed(2)}`
+      document.querySelector('#transport-line').textContent =
+        `Transportation — $${transportPrice.toFixed(2)}`
+      document.querySelector('#fee-line').textContent =
+        `Booking fee — $${fee.toFixed(2)}`
+      document.querySelector('#total-label').textContent = 'Total'
+      document.querySelector('#total').textContent = `$${total.toFixed(2)}`
+      document.querySelector('#per-person').textContent =
+        `$${perPerson.toFixed(2)} per person · Budget: $${budget.toFixed(2)}`
+
+      document.querySelector('#plan-heading').textContent = 'Simple trip plan'
+      document.querySelector('#plan-list').innerHTML = planHTML
+      document.querySelector('#trip-note').textContent =
+        `This is a ${pace} ${days}-day plan.`
+      document.querySelector('#reload-note').textContent =
+        'Reload the page to make another trip.'
+
+      // Change the accent color every time the page loads
+      document.body.style.setProperty('--accent', pickRandom(colors))
+    </script>
+  </body>
+</html>
