@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A random weekend trip generator built with JavaScript objects and local storage."
+    />
+    <title>Random Weekend Trip</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <main class="trip-card">
+      <header>
+        <p class="kicker" id="kicker"></p>
+        <h1 id="title"></h1>
+        <p class="summary" id="summary"></p>
+      </header>
+
+      <img id="trip-image" src="" alt="" />
+      <p class="photo-credit" id="photo-credit"></p>
+      <p class="status" id="status"></p>
+
+      <div class="controls" aria-label="Trip controls">
+        <button id="roll-trip" type="button">Roll a different trip</button>
+        <button class="secondary" id="clear-trip" type="button">Clear saved trip</button>
+      </div>
+
+      <section>
+        <h2 id="budget-heading"></h2>
+        <p class="line" id="hotel-line"></p>
+        <p class="line" id="food-line"></p>
+        <p class="line" id="activity-line"></p>
+        <p class="line" id="transport-line"></p>
+        <p class="line" id="fee-line"></p>
+
+        <p class="total">
+          <span id="total-label"></span>
+          <strong id="total"></strong>
+        </p>
+
+        <p class="small-text" id="per-person"></p>
+      </section>
+
+      <section>
+        <h2 id="plan-heading"></h2>
+        <ul class="plan-list" id="plan-list"></ul>
+        <p class="small-text" id="trip-note"></p>
+      </section>
+
+      <section>
+        <h2>Trip details</h2>
+        <dl class="details-list" id="details-list"></dl>
+      </section>
+
+      <footer>
+        <p id="storage-note"></p>
+      </footer>
+    </main>
+
+    <script>
+      /*
+        PART B ANSWER
+        After a reload, the saved trip came back without its methods. Local
+        storage only holds strings, and JSON.stringify leaves functions out,
+        so JSON.parse creates a plain object with data but no total(),
+        summary(), or statusMessage() methods. I have to attach the methods
+        again after parsing; withTripMethods(savedTrip) does that below.
+
+        FIGURE IT OUT — SPREAD
+        I tried const copy = {...trip}. Changing copy.destination did not
+        change trip.destination. But changing copy.details.Language also
+        changed trip.details.Language, because spread makes a shallow copy:
+        the nested details object is still shared by the original and copy.
+      */
+
+      const STORAGE_KEY = 'week12-saved-trip'
+
+      function withTripMethods(trip) {
+        return {
+          ...trip,
+
+          nights() {
+            return this.days - 1
+          },
+
+          hotelTotal() {
+            return this.hotelPrice * this.nights()
+          },
+
+          foodTotal() {
+            return this.foodPerDay * this.days * this.travelers
+          },
+
+          activityTotal() {
+            return this.activityPrice * this.travelers
+          },
+
+          subtotal() {
+            return (
+              this.hotelTotal() +
+              this.foodTotal() +
+              this.activityTotal() +
+              this.transportPrice
+            )
+          },
+
+          fee() {
+            return this.subtotal() * this.feeRate
+          },
+
+          total() {
+            return this.subtotal() + this.fee()
+          },
+
+          perPerson() {
+            return this.total() / this.travelers
+          },
+
+          summary() {
+            const personWord = this.travelers === 1 ? 'person' : 'people'
+            return `${this.days} days in ${this.destination} for ${this.travelers} ${personWord}. This is a ${this.tripStyle}.`
+          },
+
+          statusMessage() {
+            const difference = Math.abs(this.budget - this.total())
+
+            if (this.total() > this.budget) {
+              return `Over budget by $${difference.toFixed(2)}`
+            }
+
+            if (this.total() < this.budget * 0.75) {
+              return `Plenty of room — $${difference.toFixed(2)} left`
+            }
+
+            return `Nicely balanced — $${difference.toFixed(2)} left`
+          },
+        }
+      }
+
+      const trips = [
+        withTripMethods({
+          id: 'TRIP-01',
+          destination: 'Kyoto',
+          image: 'img/kyoto.jpg',
+          imageAlt: 'A quiet street in Kyoto',
+          photoCredit: 'Photo by Ravi Dwivedi',
+          tripStyle: 'food and temple trip',
+          days: 4,
+          travelers: 2,
+          hotelPrice: 145,
+          foodPerDay: 58,
+          activityPrice: 42,
+          transportPrice: 72,
+          feeRate: 0.08,
+          budget: 1250,
+          isInternational: true,
+          accent: '#d25b45',
+          plan: [
+            {label: 'Activity', text: 'Walk the Philosopher’s Path'},
+            {label: 'Food stop', text: 'Visit Nishiki Market for lunch'},
+            {label: 'Reminder', text: 'Reserve the morning train to Arashiyama'},
+          ],
+          details: {
+            Language: 'Japanese',
+            Currency: 'Japanese yen',
+            Pace: 'Relaxed',
+            BestFor: 'Temples, food, and long walks',
+          },
+        }),
+        withTripMethods({
+          id: 'TRIP-02',
+          destination: 'Lisbon',
+          image: 'img/lisbon.jpg',
+          imageAlt: 'A view across Lisbon',
+          photoCredit: 'Photo by CrisLuiz',
+          tripStyle: 'architecture and cafe trip',
+          days: 3,
+          travelers: 2,
+          hotelPrice: 132,
+          foodPerDay: 52,
+          activityPrice: 35,
+          transportPrice: 48,
+          feeRate: 0.08,
+          budget: 950,
+          isInternational: true,
+          accent: '#287c72',
+          plan: [
+            {label: 'Activity', text: 'Ride Tram 28 before the crowds'},
+            {label: 'Food stop', text: 'Try pastéis de nata in Belém'},
+            {label: 'Reminder', text: 'Wear shoes with good grip for the hills'},
+          ],
+          details: {
+            Language: 'Portuguese',
+            Currency: 'Euro',
+            Pace: 'Busy',
+            BestFor: 'Tilework, viewpoints, and cafes',
+          },
+        }),
+        withTripMethods({
+          id: 'TRIP-03',
+          destination: 'Montréal',
+          image: 'img/montreal.jpg',
+          imageAlt: 'The Montréal skyline',
+          photoCredit: 'Photo by Quintin Soloviev',
+          tripStyle: 'museum and bakery weekend',
+          days: 3,
+          travelers: 1,
+          hotelPrice: 118,
+          foodPerDay: 48,
+          activityPrice: 55,
+          transportPrice: 38,
+          feeRate: 0.08,
+          budget: 720,
+          isInternational: true,
+          accent: '#4968a8',
+          plan: [
+            {label: 'Activity', text: 'Explore the Montréal Museum of Fine Arts'},
+            {label: 'Food stop', text: 'Compare bagels from two neighborhood bakeries'},
+            {label: 'Reminder', text: 'Bring a light layer for the evening'},
+          ],
+          details: {
+            Language: 'French and English',
+            Currency: 'Canadian dollar',
+            Pace: 'Relaxed',
+            BestFor: 'Museums, design, and bakeries',
+          },
+        }),
+        withTripMethods({
+          id: 'TRIP-04',
+          destination: 'Mexico City',
+          image: 'img/mexico-city.jpg',
+          imageAlt: 'The Mexico City skyline',
+          photoCredit: "Photo by Leandro's World Tour",
+          tripStyle: 'art and street-food trip',
+          days: 5,
+          travelers: 3,
+          hotelPrice: 104,
+          foodPerDay: 40,
+          activityPrice: 36,
+          transportPrice: 64,
+          feeRate: 0.08,
+          budget: 1750,
+          isInternational: true,
+          accent: '#a35e2d',
+          plan: [
+            {label: 'Activity', text: 'Spend a morning at Museo Frida Kahlo'},
+            {label: 'Food stop', text: 'Try a neighborhood taco crawl'},
+            {label: 'Reminder', text: 'Leave one afternoon open for exploring'},
+          ],
+          details: {
+            Language: 'Spanish',
+            Currency: 'Mexican peso',
+            Pace: 'Relaxed',
+            BestFor: 'Art, parks, and street food',
+          },
+        }),
+        withTripMethods({
+          id: 'TRIP-05',
+          destination: 'Kyoto After Dark',
+          image: 'img/kyoto.jpg',
+          imageAlt: 'A lantern-lit street in Kyoto',
+          photoCredit: 'Photo by Ravi Dwivedi',
+          tripStyle: 'night photography weekend',
+          days: 2,
+          travelers: 2,
+          hotelPrice: 165,
+          foodPerDay: 62,
+          activityPrice: 28,
+          transportPrice: 45,
+          feeRate: 0.08,
+          budget: 690,
+          isInternational: true,
+          accent: '#76549b',
+          plan: [
+            {label: 'Activity', text: 'Photograph Gion just after sunset'},
+            {label: 'Food stop', text: 'Book a late dinner in Pontocho Alley'},
+            {label: 'Reminder', text: 'Pack a small tripod and spare battery'},
+          ],
+          details: {
+            Language: 'Japanese',
+            Currency: 'Japanese yen',
+            Pace: 'Busy',
+            BestFor: 'Night photography and small restaurants',
+          },
+        }),
+      ]
+
+      function pickRandom(list) {
+        return list[Math.floor(Math.random() * list.length)]
+      }
+
+      function readSavedTrip() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY)
+          return raw ? withTripMethods(JSON.parse(raw)) : null
+        } catch (error) {
+          localStorage.removeItem(STORAGE_KEY)
+          return null
+        }
+      }
+
+      function saveTrip() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(activeTrip))
+      }
+
+      function renderDetails() {
+        const keys = Object.keys(activeTrip.details)
+        let detailsHTML = ''
+
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i]
+          detailsHTML += `<div><dt>${key}</dt><dd>${activeTrip.details[key]}</dd></div>`
+        }
+
+        document.querySelector('#details-list').innerHTML = detailsHTML
+      }
+
+      function renderPlan() {
+        let planHTML = ''
+
+        for (let i = 0; i < activeTrip.plan.length; i++) {
+          const item = activeTrip.plan[i]
+          const stripe = i % 2 === 0 ? 'stripe' : ''
+          planHTML += `<li class="${stripe}"><span>${item.label}</span>${item.text}</li>`
+        }
+
+        document.querySelector('#plan-list').innerHTML = planHTML
+      }
+
+      function render() {
+        const nightWord = activeTrip.nights() === 1 ? 'night' : 'nights'
+        const personWord = activeTrip.travelers === 1 ? 'person' : 'people'
+        const pace = activeTrip.days >= 4 ? 'relaxed' : 'busy'
+
+        document.title = `${activeTrip.destination} Trip Generator`
+        document.querySelector('#kicker').textContent = 'Random weekend trip'
+        document.querySelector('#title').textContent = activeTrip.destination
+        document.querySelector('#summary').textContent = activeTrip.summary()
+        document.querySelector('#trip-image').src = activeTrip.image
+        document.querySelector('#trip-image').alt = activeTrip.imageAlt
+        document.querySelector('#photo-credit').textContent = activeTrip.photoCredit
+        document.querySelector('#status').textContent = activeTrip.statusMessage()
+        document.querySelector('#budget-heading').textContent = 'Estimated budget'
+        document.querySelector('#hotel-line').textContent =
+          `${activeTrip.nights()} ${nightWord} at $${activeTrip.hotelPrice.toFixed(2)} — $${activeTrip.hotelTotal().toFixed(2)}`
+        document.querySelector('#food-line').textContent =
+          `Food for ${activeTrip.travelers} ${personWord} — $${activeTrip.foodTotal().toFixed(2)}`
+        document.querySelector('#activity-line').textContent =
+          `Activities — $${activeTrip.activityTotal().toFixed(2)}`
+        document.querySelector('#transport-line').textContent =
+          `Transportation — $${activeTrip.transportPrice.toFixed(2)}`
+        document.querySelector('#fee-line').textContent =
+          `Booking fee — $${activeTrip.fee().toFixed(2)}`
+        document.querySelector('#total-label').textContent = 'Total'
+        document.querySelector('#total').textContent = `$${activeTrip.total().toFixed(2)}`
+        document.querySelector('#per-person').textContent =
+          `$${activeTrip.perPerson().toFixed(2)} per person · Budget: $${activeTrip.budget.toFixed(2)}`
+        document.querySelector('#plan-heading').textContent = 'Simple trip plan'
+        document.querySelector('#trip-note').textContent =
+          `This is a ${pace} ${activeTrip.days}-day plan.`
+
+        document.body.style.setProperty('--accent', activeTrip.accent)
+        renderPlan()
+        renderDetails()
+      }
+
+      function rollTrip() {
+        const otherTrips = trips.filter((trip) => trip.id !== activeTrip.id)
+        activeTrip = pickRandom(otherTrips)
+        saveTrip()
+        render()
+        document.querySelector('#storage-note').textContent =
+          'This trip is saved and will return after a reload.'
+      }
+
+      function clearSavedTrip() {
+        localStorage.removeItem(STORAGE_KEY)
+        const otherTrips = trips.filter((trip) => trip.id !== activeTrip.id)
+        activeTrip = pickRandom(otherTrips)
+        render()
+        document.querySelector('#storage-note').textContent =
+          'Saved trip cleared. Roll again to save a new one.'
+      }
+
+      const savedTrip = readSavedTrip()
+      let activeTrip = savedTrip || pickRandom(trips)
+
+      document.querySelector('#roll-trip').addEventListener('click', rollTrip)
+      document.querySelector('#clear-trip').addEventListener('click', clearSavedTrip)
+
+      render()
+      document.querySelector('#storage-note').textContent = savedTrip
+        ? 'Restored your saved trip from local storage.'
+        : 'No saved trip yet. Roll a different trip to save one.'
+    </script>
+  </body>
+</html>
